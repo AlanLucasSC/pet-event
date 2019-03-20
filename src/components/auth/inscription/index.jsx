@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import Modal from '../../shared/modal/modal'
+import { Error } from '../error'
 import { isNothing, isRga, isEmail, checkForm } from '../../utils/auth'
 import { doInscription } from '../auth'
 
@@ -18,6 +19,10 @@ export default class Login extends Component{
         this.state = {
             isLoading: False,
             isSuccessSubmit: Void,
+            inscriptionState: {
+                isSuccess: Void,
+                message: InitialInput
+            },
 
             is:{
                 isRga: Void,
@@ -142,17 +147,20 @@ export default class Login extends Component{
         })
     }
 
-    handleSubmit(event){
+    async handleSubmit(event){
         event.preventDefault()
         if( !checkForm( this.state.is ) ){
             this.submitError()
-            setTimeout( this.submitDefault, 3000)
+            setTimeout( this.submitDefault, 2000)
         } else {
             this.LoadingOn()
 
-            doInscription( this.state.form )
+            let doInscriptionResponse = await doInscription( this.state.form )
+            this.setState({
+                inscriptionState: doInscriptionResponse
+            })
 
-            setTimeout( this.LoadingOff, 3000)
+            setTimeout( this.LoadingOff, 2000)
         }
     }
 
@@ -282,6 +290,7 @@ export default class Login extends Component{
                         <Textarea id="deficiency" name="Deficiência" onChange={ this.inputChange } value={ this.state.form.deficiency }/>
 
                         <hr className="my-4"></hr>
+                        <Error { ...this.state.inscriptionState }/>
                         <Submit error={ this.state.isSuccessSubmit } id="idInscription"> Inscreva-se </Submit>
                     </form>
                 </Loading>

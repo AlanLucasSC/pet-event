@@ -10,15 +10,6 @@ export default class FirebaseService {
 
         return value
     }
-    static getAllData = async(path) =>{
-        const query = firebaseDatabase.ref(path).orderByChild('title')
-
-        const snapshot = await query.once('value')
-
-        const value = snapshot.val()
-
-        return value
-    }
 
     static listenIfChildAdded = (path, id, callback) => {
         const query = firebaseDatabase.ref(path).child(id)
@@ -26,77 +17,14 @@ export default class FirebaseService {
         query.on("child_added", callback);
     }
 
-    static getDocument = async (id) => {
-        
-        const pathOfCollectionDocuments = 'documents'
-        const document = await this.getOneData(pathOfCollectionDocuments, id)
-
-        return document
-    };
-    
-    static getTemplates = async () => {
-        
-        const pathOfCollectionDocuments = 'templates'
-        const documents = await this.getAllData(pathOfCollectionDocuments)
-
-        return documents
-    };
-
-    static updateDocument = async (idDocument, document, userName) => {
-        var pathOfCollectionDocuments = 'documents'
-
+    static insertData = (path, id, form) => {
         try {
-            
-            var collectionDocuments = firebaseDatabase.ref(pathOfCollectionDocuments)
-            var documentRef = collectionDocuments.child(idDocument)
-            var newDocument = documentRef.push()
-            
-            newDocument.set({
-                content: document,
-                created: new Date().toISOString(),
-                user: userName
-            })
+            const query = firebaseDatabase.ref(path).child(id)
+            query.set(form)
+            return true
         } catch (error) {
             return false
         }
-
-        return true
-    }
-
-    static insertTemplate = async(titulo, descricao, conteudo) => {
-        var pathOfCollectionTemplates = 'templates'
-
-        try{
-            var collectionTemplates = firebaseDatabase.ref(pathOfCollectionTemplates)
-            var documentRef = collectionTemplates.push();
-
-            documentRef.set({
-                title:titulo,
-                description:descricao,
-                content:conteudo
-            })
-
-        }catch(error){
-            console.log(error)
-        }
-    }
-    static insertHistory = async (idHistory, differences) => {
-        var pathOfCollectionHistories = 'histories'
-        try {
-
-            var collectionHistories = firebaseDatabase.ref().child(pathOfCollectionHistories)
-            var historyRef = collectionHistories.child(idHistory)
-
-            differences.forEach(difference => {
-                //console.log(difference)
-                let newHistory = historyRef.push()
-                newHistory.set(difference)
-            });
-
-        } catch (error) {
-            return false
-        }
-        return true
     }
 
 }
