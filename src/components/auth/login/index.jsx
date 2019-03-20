@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import Modal from '../../shared/modal/modal'
 import { isPassword, isRga } from '../../utils/auth'
 
-import { False, Void, InitialInput } from '../constant'
+import { True, False, Void, InitialInput } from '../constant'
 import { Input } from '../input'
 import { Submit } from '../submit'
 import { Loading } from '../loading'
@@ -23,6 +23,8 @@ export default class Login extends Component{
         this.handleSubmit = this.handleSubmit.bind(this)
         this.rgaChange = this.rgaChange.bind(this)
         this.passwordChange = this.passwordChange.bind(this)
+        this.LoadingOn = this.LoadingOn.bind(this)
+        this.LoadingOff = this.LoadingOff.bind(this)
     } 
 
     rgaChange(event){
@@ -41,9 +43,26 @@ export default class Login extends Component{
         });
     }
 
+    LoadingOn(){
+        this.setState({
+            isLoading: True
+        })
+    }
+
+    LoadingOff(){
+        this.setState({
+            isLoading: False
+        })
+    }
+
     handleSubmit(event){
-        event.preventDefault();
+        event.preventDefault()
+
+        this.LoadingOn()
+
         console.log('baatata')
+
+        setTimeout( this.LoadingOff , 3000);
     }
 
     render(){
@@ -55,7 +74,7 @@ export default class Login extends Component{
                     <Loading isLoading={ this.state.isLoading }>
                         <Input
                             type="text"
-                            id="rga"
+                            id="rgaLogin"
                             placeholder="RGA"
                             onChange={ this.rgaChange }
                             isValid={ this.state.isRga }
@@ -65,16 +84,16 @@ export default class Login extends Component{
                         </Input>
                         <Input
                             type="password"
-                            id="password"
+                            id="passwordLogin"
                             placeholder="Password"
                             onChange={ this.passwordChange }
                             isValid={ this.state.isPassword }
                             invalidMessage="Insira uma senha com no mínimo 8 caracteres"
                         >
-                            Password
+                            Senha
                         </Input>
                         <hr className="my-4"></hr>
-                        <Submit> Login </Submit>
+                        <Submit id="idLogin"> Login </Submit>
                     </Loading>
 
                 </form>

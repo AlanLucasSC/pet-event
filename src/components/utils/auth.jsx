@@ -1,4 +1,5 @@
 import { True, False, Void, Nothing } from '../auth/constant'
+import { objectToArray } from './document'
 
 export const isEmail = (email) => {
     var validEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -21,4 +22,15 @@ export const isNothing = (value) => {
 export const isRga = (value) => {
     var rgaLength = 12
     return value.length === rgaLength ? True : False
+}
+
+export const checkForm = ( is ) => {
+    is = objectToArray( is )
+    for(var index = 0; index < is.length; index++){
+        var element = is[index]
+        if( element !== True ){
+            return false
+        }
+    }
+    return true
 }

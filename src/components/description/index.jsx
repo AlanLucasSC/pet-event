@@ -4,12 +4,9 @@ import Main from '../shared/container/main'
 import ModalButton from '../shared/modal/button'
 import Markdown from '../shared/markdown'
 import Login from '../auth/login'
+import Inscription from '../auth/inscription'
 
 export default class Description extends Component {
-
-    constructor(props){
-        super(props)
-    }
 
     render(){
         return (
@@ -22,6 +19,7 @@ export default class Description extends Component {
                     <Markdown />
                 </div>
                 <Login />
+                <Inscription />
             </Main>
         )
     }

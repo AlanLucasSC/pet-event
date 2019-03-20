@@ -717,3 +717,32 @@
 .markdown-body hr {
   border-bottom-color: #eee;
 }
+
+#loading {
+  animation-name: loading;
+  animation-duration: 1s;
+  animation-iteration-count: infinite
+}
+
+@keyframes loading {
+  0%   { transform: rotate(0deg) }
+  100% { transform: rotate(180deg) }
+}
+
+.error-submit{
+  background-color: rgb(224, 42, 42);
+  animation-name: error;
+  animation-duration: .2s;
+  animation-iteration-count: 3
+}
+
+.error-submit:focus{
+  background-color: rgb(224, 42, 42);
+}
+
+@keyframes error {
+  0%   { transform: translateX(0) }
+  33% { transform: translateX(-8px) }
+  66% { transform: translateX(8px) }
+  100% { transform: translateX(0px) }
+}

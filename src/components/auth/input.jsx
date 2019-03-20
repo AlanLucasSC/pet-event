@@ -20,6 +20,7 @@ export const Input = (props) => {
                 className={ "form-control " + inputValidation } 
                 placeholder={ props.placeholder } 
                 onChange={ props.onChange }
+                value={ props.value }
                 required
             />
             <div className="text-center valid-feedback">

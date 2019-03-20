@@ -5,7 +5,7 @@ export const Loading = (props) => {
         return (
             <div className="text-center mt-5 mb-5">
                 <div>
-                    <i class="fas fa-sync fa-7x" id="loading"></i>
+                    <i className="fas fa-sync fa-7x" id="loading"></i>
                 </div>
                 <div className="mt-4">
                     Carregando
