@@ -248,7 +248,6 @@ export default class Login extends Component{
                             <Option>Negro</Option>
                             <Option>Indígena</Option>
                             <Option>Pardo</Option>
-                            <Option>Mulato</Option>
                             <Option>Caboclo</Option>
                             <Option>Cafuzo</Option>
                         </Select>
