@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { False } from './constant'
+import { False } from '../constant'
 
 export const Submit = (props) => {
     if( props.error === False ){

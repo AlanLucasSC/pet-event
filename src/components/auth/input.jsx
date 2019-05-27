@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { True, False, Valid, Invalid, Nothing } from './constant'
+import { True, False, Valid, Invalid, Nothing } from '../constant'
 import { isVoid } from '../utils/auth'
 
 const validation = (value) => {

@@ -1,4 +1,4 @@
-import { True, False, Void, Nothing } from '../auth/constant'
+import { True, False, Void, Nothing } from '../constant'
 import { objectToArray } from './document'
 
 export const isEmail = (email) => {

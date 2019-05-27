@@ -5,7 +5,7 @@ import { Error } from '../error'
 import { isNothing, isRga, isEmail, checkForm } from '../../utils/auth'
 import { doInscription } from '../auth'
 
-import { True, False, Void, InitialInput } from '../constant'
+import { True, False, Void, InitialInput } from '../../constant'
 import { Input } from '../input'
 import { Submit } from '../submit'
 import { Loading } from '../loading'

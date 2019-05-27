@@ -1,10 +1,19 @@
 import FirebaseService from '../services/firebaseService'
-import { False } from './constant'
+import { False, True } from '../constant'
 import md5 from 'md5'
 import { sendEmail } from '../utils/email'
 
-export const doLogin = ( form ) => {
-    console.log( form )
+export const doLogin = async ( form ) => {
+    let user = await FirebaseService.getOneData('users', form.rga)
+    if( !user || user.password !== md5(form.password) ){
+        let error = { isSuccess: False, message: 'Email ou Password não válido'}
+        return error
+    }
+    let success = {
+        isSuccess: True,
+        data: user
+    }
+    return success
 }
 
 export const doInscription = async ( form ) => {

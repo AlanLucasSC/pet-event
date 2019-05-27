@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { False, True, Null } from './constant'
+import { False, True, Null } from '../constant'
 
 export const Error = (props) => {
     if(props.isSuccess === False){

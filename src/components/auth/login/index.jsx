@@ -1,18 +1,24 @@
 import React, { Component } from 'react'
 
+import { Error } from '../error'
 import Modal from '../../shared/modal/modal'
 import { isPassword, isRga } from '../../utils/auth'
 
-import { True, False, Void, InitialInput } from '../constant'
+import { True, False, Void, InitialInput } from '../../constant'
 import { Input } from '../input'
 import { Submit } from '../submit'
 import { Loading } from '../loading'
+import { doLogin } from '../auth'
 
 export default class Login extends Component{
     constructor(props){
         super(props)
 
         this.state = {
+            loginState: {
+                isSuccess: Void,
+                message: InitialInput
+            },
             isLoading: False,
             isRga: Void,
             isPassword: Void,
@@ -25,6 +31,7 @@ export default class Login extends Component{
         this.passwordChange = this.passwordChange.bind(this)
         this.LoadingOn = this.LoadingOn.bind(this)
         this.LoadingOff = this.LoadingOff.bind(this)
+
     } 
 
     rgaChange(event){
@@ -55,12 +62,27 @@ export default class Login extends Component{
         })
     }
 
-    handleSubmit(event){
+    async handleSubmit(event){
         event.preventDefault()
 
         this.LoadingOn()
 
-        console.log('baatata')
+        var loginState = await doLogin({
+            rga: this.state.rga,
+            password: this.state.password
+        })
+
+        if(!loginState.isSuccess){
+            this.setState({
+                loginState: loginState,
+                isRga: Void,
+                isPassword: Void,
+            })
+        } else {
+            console.log(this.loginSuccess)
+            console.log(this.props.user)
+            //this.props.loginSuccess(loginState)
+        }
 
         setTimeout( this.LoadingOff , 3000);
     }
@@ -93,6 +115,7 @@ export default class Login extends Component{
                             Senha
                         </Input>
                         <hr className="my-4"></hr>
+                        <Error { ...this.state.loginState }/>
                         <Submit id="idLogin"> Login </Submit>
                     </Loading>
 
