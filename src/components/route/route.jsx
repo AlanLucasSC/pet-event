@@ -1,41 +1,40 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-
-import { True, False, InitialInput } from '../constant'
+import { LoadApplicationState } from '../utils/localStorage'
 
 import Description from '../description'
+import Activeties from '../activeties'
 
 class Router extends Component {
 
   constructor(props){
     super(props)
-    this.state = {
-      isLoggedIn: False,
-      user: {
-        name: InitialInput,
-        id: InitialInput,
-        rga: InitialInput
-      }
-    }
+    this.loadData = this.loadData.bind(this)
 
-    this.loginSuccess = this.loginSuccess.bind(this)
+    this.loadData()
   }
 
-  loginSuccess(user){
-    this.setState({
-      isLoggedIn: True,
-      user: user
-    })
-
-    console.log(this.state)
+  loadData(){
+    var data = LoadApplicationState()
+    this.state = {
+      isLoggedIn: data ? true : false,
+      user: data
+    }
   }
 
   render() {
     return (
         <BrowserRouter>
             <Switch>
-                <Route path="/pet-event/" exact={true} render={ (props) => <Description user={ this.state.user } loginSuccess={ this.loginSuccess.bind(this) } {...props} /> }/>
-                <Route path='*' render={ (props) => <Description user={ this.state.user } {...props} /> }/>
+                <Route path="/pet-event/" exact={true} render={ 
+                  (props) => <Description isLoggedIn={ this.state.isLoggedIn } {...props} /> 
+                }/>
+                <Route path="/activeties/" exact={true} render={ 
+                  (props) => <Activeties history={this.props.history} isLoggedIn={ this.state.isLoggedIn }  user={ this.state.user } {...props} /> 
+                }/>
+                <Route path='*' render={ 
+                  (props) => <Description isLoggedIn={ this.state.isLoggedIn } {...props} /> 
+                }/>
             </Switch>
         </ BrowserRouter>
     );

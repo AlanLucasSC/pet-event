@@ -9,6 +9,7 @@ import { Input } from '../input'
 import { Submit } from '../submit'
 import { Loading } from '../loading'
 import { doLogin } from '../auth'
+import { Save } from '../../utils/localStorage'
 
 export default class Login extends Component{
     constructor(props){
@@ -23,7 +24,7 @@ export default class Login extends Component{
             isRga: Void,
             isPassword: Void,
             rga: InitialInput,
-            password: InitialInput
+            password: InitialInput,
         }
 
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -31,7 +32,10 @@ export default class Login extends Component{
         this.passwordChange = this.passwordChange.bind(this)
         this.LoadingOn = this.LoadingOn.bind(this)
         this.LoadingOff = this.LoadingOff.bind(this)
+        this.closeModal = this.closeModal.bind(this)
+        this.loginSuccess = this.loginSuccess.bind(this)
 
+        console.log( this.props.history )
     } 
 
     rgaChange(event){
@@ -62,6 +66,15 @@ export default class Login extends Component{
         })
     }
 
+    closeModal(){
+        var buttonClose = document.querySelector('#closelogin')
+        buttonClose.click()
+    }
+
+    loginSuccess(){
+        this.props.history.push('activeties')
+    }
+
     async handleSubmit(event){
         event.preventDefault()
 
@@ -79,9 +92,10 @@ export default class Login extends Component{
                 isPassword: Void,
             })
         } else {
-            console.log(this.loginSuccess)
-            console.log(this.props.user)
-            //this.props.loginSuccess(loginState)
+            Save(loginState.data)
+            this.closeModal()
+            setTimeout( this.loginSuccess , 2000);
+            
         }
 
         setTimeout( this.LoadingOff , 3000);

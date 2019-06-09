@@ -8,10 +8,6 @@ import Inscription from '../auth/inscription'
 
 export default class Description extends Component {
 
-    constructor(props){
-        super(props)
-    }
-
     render(){
         return (
             <Main>
@@ -22,7 +18,7 @@ export default class Description extends Component {
                     </div>
                     <Markdown />
                 </div>
-                <Login user={ this.props.user }/>
+                <Login history={ this.props.history }/>
                 <Inscription />
             </Main>
         )

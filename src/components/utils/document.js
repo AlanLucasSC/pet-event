@@ -24,3 +24,7 @@ export const isoDateToShortDateWithHours = (dateObject) => {
     let hours = date.getHours() + ':' + date.getMinutes()
     return dateShortFormat + ' ' + hours
 }
+
+export const redirectTo = (route) => {
+    window.location.replace(route)
+}
