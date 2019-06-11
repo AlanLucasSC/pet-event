@@ -70,7 +70,6 @@ export default class Login extends Component{
     }
 
     loginSuccess(){
-        //this.props.history.push('activeties')
         this.props.history.push('users')
     }
 
@@ -93,7 +92,7 @@ export default class Login extends Component{
         } else {
             Save(loginState.data)
             this.closeModal()
-            setTimeout( this.loginSuccess , 2000);
+            setTimeout( this.loginSuccess , 1000);
             
         }
 

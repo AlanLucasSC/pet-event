@@ -11,3 +11,8 @@ export const LoadApplicationState = () => {
     var key = 'state'
     return Load(key)
 }
+
+export const RemoveApplicationState = () => {
+    var key = 'state'
+    localStorage.removeItem(key);
+}

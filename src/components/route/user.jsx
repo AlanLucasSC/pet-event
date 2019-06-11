@@ -1,15 +1,31 @@
 import React, { Component } from "react";
-import {Route, Link } from "react-router-dom";
+import {Route, Link, Redirect } from "react-router-dom";
 
 import Main from '../shared/container/main'
 import Activeties from '../activeties'
+import ShowQrCode from '../qrCode/show'
+
+import { RemoveApplicationState } from '../utils/localStorage'
 
 export default class UserRoute extends Component {
 
     constructor(props){
         super(props)
 
+        this.state = {
+            quit: false
+        }
+
         this.registered = this.registered.bind(this)
+        this.quit = this.quit.bind(this)
+    }
+
+    quit(){
+        RemoveApplicationState()
+        this.props.reload()
+        this.setState({
+            quit: true
+        })
     }
 
     registered(){
@@ -34,7 +50,7 @@ export default class UserRoute extends Component {
                                     <a className="nav-link" data-toggle="modal" data-target="#changePassword">Mudar Senha</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="./index.html">Sair</a>
+                                    <a onClick={ this.quit } className="nav-link">Sair</a>
                                 </li>
                             </ul>
                         </div>
@@ -42,12 +58,19 @@ export default class UserRoute extends Component {
                     <Route path={`${this.props.match.path}activeties`} exact render={
                         (props) => <Activeties user={ this.props.user } {...props}/>
                     }/>
+                    <Route path={`${this.props.match.path}myQrCode`} render={
+                        (props) => <ShowQrCode {...props}/>
+                    }/>
                 </div>
             </Main>
         )
     }
 
     render(){
+        if(this.state.quit)
+            return <Redirect to={{
+                pathname: "/pet-event",
+            }}/>
         return this.registered()
     }
 }

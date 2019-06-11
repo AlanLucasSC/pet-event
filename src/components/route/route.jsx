@@ -11,6 +11,7 @@ class Router extends Component {
   constructor(props){
     super(props)
     this.loadData = this.loadData.bind(this)
+    this.reload = this.reload.bind(this)
 
     this.loadData()
   }
@@ -23,6 +24,14 @@ class Router extends Component {
     }
   }
 
+  reload(){
+    var data = LoadApplicationState()
+    this.setState({
+      isLoggedIn: data ? true : false,
+      user: data
+    })
+  }
+
   render() {
     return (
         <BrowserRouter>
@@ -31,7 +40,7 @@ class Router extends Component {
                   (props) => <Description isLoggedIn={ this.state.isLoggedIn } {...props} /> 
                 }/>
                 <Route path="/users/" render={ 
-                  (props) => <UserRoute user={ this.state.user } {...props}/>
+                  (props) => <UserRoute reload={ this.reload } user={ this.state.user } {...props}/>
                 }/>
                 
                 <Route path="/activeties/" render={ 
