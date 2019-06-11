@@ -4,6 +4,8 @@ import {Route, Link, Redirect } from "react-router-dom";
 import Main from '../shared/container/main'
 import Activeties from '../activeties'
 import ShowQrCode from '../qrCode/show'
+import ChangePassword from "../auth/changePassword";
+
 
 import { RemoveApplicationState } from '../utils/localStorage'
 
@@ -62,6 +64,7 @@ export default class UserRoute extends Component {
                         (props) => <ShowQrCode {...props}/>
                     }/>
                 </div>
+                <ChangePassword/>
             </Main>
         )
     }

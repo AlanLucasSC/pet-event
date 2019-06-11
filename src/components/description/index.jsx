@@ -12,7 +12,6 @@ export default class Description extends Component {
         super(props)
 
         if(this.props.isLoggedIn){
-            console.log('BA')
             if(this.props.history.location.pathname === '/')
                 this.props.history.push('users')
             else

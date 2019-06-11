@@ -29,3 +29,18 @@ export const doInscription = async ( form ) => {
 
     return success
 }
+
+export const changePassword = async ( password, rga ) => {
+    try {
+        FirebaseService.updateData((user) => {
+            if(user){
+                user.password = md5(password)
+            }
+            return user
+        }, 'users', rga)
+
+        return true
+    } catch (error) {
+        return false
+    }
+}

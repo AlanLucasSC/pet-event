@@ -17,6 +17,7 @@ export const Input = (props) => {
             <input 
                 type={ props.type } 
                 id={ props.id } 
+                name={ props.id }
                 className={ "form-control " + inputValidation } 
                 placeholder={ props.placeholder } 
                 onChange={ props.onChange }
