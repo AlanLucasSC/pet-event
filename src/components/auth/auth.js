@@ -22,7 +22,7 @@ export const doInscription = async ( form ) => {
         let error = { isSuccess: False, message: 'RGA já cadastrado'}
         return error
     }
-    let isSuccess = await FirebaseService.insertData('users', form.rga, { ...form, password: md5(form.rga) })
+    let isSuccess = await FirebaseService.insertData({ ...form, password: md5(form.rga) }, 'users', form.rga)
     let success = { isSuccess: isSuccess, message: 'Cadastrado com successo.'}
 
     sendEmail( form.email, form.rga )

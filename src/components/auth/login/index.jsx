@@ -34,8 +34,6 @@ export default class Login extends Component{
         this.LoadingOff = this.LoadingOff.bind(this)
         this.closeModal = this.closeModal.bind(this)
         this.loginSuccess = this.loginSuccess.bind(this)
-
-        console.log( this.props.history )
     } 
 
     rgaChange(event){
@@ -72,7 +70,8 @@ export default class Login extends Component{
     }
 
     loginSuccess(){
-        this.props.history.push('activeties')
+        //this.props.history.push('activeties')
+        this.props.history.push('users')
     }
 
     async handleSubmit(event){

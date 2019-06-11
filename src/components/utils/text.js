@@ -20,7 +20,7 @@ export const mergeTextsWithColor = (firstText, secondText) => {
     differences.forEach(element => {
         mergedText += diffTextColor(element)
     })
-    console.log( differences )
+    //console.log( differences )
     return mergedText
 }
 
