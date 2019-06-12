@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import { LoadApplicationState } from '../utils/localStorage'
 
 import Description from '../description'
-import Activeties from '../activeties'
+import Activeties from '../activeties/registered'
 import UserRoute from './user'
 
 class Router extends Component {

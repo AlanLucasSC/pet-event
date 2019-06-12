@@ -19,3 +19,13 @@ export const ListGroupContent = ( props ) => {
         </div>
     )
 }
+
+export const ListGroupContentSupport = ( props ) => {
+    return (
+        <div class="col-md-8">
+            <div class="tab-content" id="nav-tabContent">
+                { props.children }
+            </div>
+        </div>
+    )
+}

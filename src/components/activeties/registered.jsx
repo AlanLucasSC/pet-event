@@ -8,7 +8,7 @@ import { getActiveties, getUserActiveties } from './effects'
 import { ListGroup, ListGroupContent } from './list/list'
 import { ItemGroup, ItemGroupContent } from './list/item'
 
-export default class Activeties extends Component {
+export default class ActivetiesRegistered extends Component {
     constructor(props){
         
         super(props)
@@ -68,6 +68,7 @@ export default class Activeties extends Component {
                     rga={ this.state.user.rga }
                     reload={ this.reload }
                     type={ activity.inscription }
+                    name={ this.state.user.name }
                 />
             )
         });

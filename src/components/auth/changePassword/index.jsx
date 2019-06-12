@@ -4,7 +4,7 @@ import Modal from '../../shared/modal/modal'
 import { Error } from '../error'
 import { changePassword } from '../auth'
 
-import { Loading } from '../loading'
+import { Loading } from '../../shared/loading'
 import { Input } from '../input'
 import { Submit } from '../submit'
 import { Null, False, True, Nothing } from '../../constant';

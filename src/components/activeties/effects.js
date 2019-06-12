@@ -10,17 +10,39 @@ export const getUserActiveties = async (rga) => {
     return activeties
 }
 
-export const activityInscription = async (rga, activity) => {
-    var form = {
+export const activityInscription = async (rga, activity, name) => {
+    var formInscription = {
         inscription: true
     }
 
-    var hasInserted = await FirebaseService.insertData(form, 'users', rga, 'activeties', activity)
+    var formUser = {
+        rga: rga,
+        presence: false,
+        name: name
+    }
+
+    var hasInserted = await FirebaseService.insertData(formInscription, 'users', rga, 'activeties', activity)
+
+    var activityName = activity
+    await FirebaseService.updateData((activity) => {
+        if(activity){
+            activity.vacancies--
+        }
+        return activity
+    }, 'activeties', activityName)
+
+    setTimeout(() => {
+        FirebaseService.insertData(formUser, 'activeties', activity, 'users', rga)
+    }, 1000);
+
     return hasInserted
 }
 
 export const removeActivityInscription = async (rga, activity) => {
     var hasRemoved = await FirebaseService.removeData('users', rga, 'activeties', activity)
+    setTimeout(() => {
+        FirebaseService.removeData('activeties', activity, 'users', rga)
+    }, 1000);
     return hasRemoved
 }
 

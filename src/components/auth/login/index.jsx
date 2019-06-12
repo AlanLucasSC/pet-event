@@ -7,7 +7,7 @@ import { isPassword, isRga } from '../../utils/auth'
 import { True, False, Void, InitialInput } from '../../constant'
 import { Input } from '../input'
 import { Submit } from '../submit'
-import { Loading } from '../loading'
+import { Loading } from '../../shared/loading'
 import { doLogin } from '../auth'
 import { Save } from '../../utils/localStorage'
 
