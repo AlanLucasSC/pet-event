@@ -4,19 +4,19 @@ self.__precacheManifest = [
     "url": "/pet-event/static/js/runtime~main.e230d20d.js"
   },
   {
-    "revision": "6225ae8d5ca4e3b4605e",
-    "url": "/pet-event/static/js/main.b142630d.chunk.js"
+    "revision": "c19df0e2078a7e41c117",
+    "url": "/pet-event/static/js/main.143a3bb4.chunk.js"
   },
   {
     "revision": "dc3f1d22de439843a6f6",
     "url": "/pet-event/static/js/2.0917fb29.chunk.js"
   },
   {
-    "revision": "6225ae8d5ca4e3b4605e",
+    "revision": "c19df0e2078a7e41c117",
     "url": "/pet-event/static/css/main.faccfa99.chunk.css"
   },
   {
-    "revision": "96be17dea2910fd6df2b1f0a188444ee",
+    "revision": "4bcdef46b15c92d457888f44005d72b7",
     "url": "/pet-event/index.html"
   }
 ];
