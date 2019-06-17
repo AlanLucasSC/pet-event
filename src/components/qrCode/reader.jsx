@@ -1,15 +1,23 @@
 import React, { Component } from 'react'
+
 import QrReader from "react-qr-reader";
+import { Error } from '../auth/error'
 
 import { Loading } from '../shared/loading'
-import { False, True } from '../constant';
+import { False, True, Void, InitialInput } from '../constant';
+import { presence } from './effects'
 
 export default class Reader extends Component {
     constructor(props){
         super(props)
         
         this.state = {
+            presenceState: {
+                isSuccess: Void,
+                message: InitialInput
+            },
             activityName: this.props.match.params.activity,
+            activityType: this.props.match.params.type,
             delay: 500,
             isLoading: False
         }
@@ -17,15 +25,25 @@ export default class Reader extends Component {
         this.handleScan = this.handleScan.bind(this)
     }
 
-    handleScan(data) {
+    async handleScan(data) {
         if (data) {
             this.setState({
                 isLoading: True
             })
-            console.log( data )
+
+            var isSuccess = await presence(this.state.activityName, data, this.state.activityType)
+            var presenceState = isSuccess ? {
+                isSuccess: True,
+                message: 'Presença realizada'
+            } : {
+                isSuccess: False,
+                message: 'Erro ao realizar a presença'
+            }
+
             setTimeout(() => {
                 this.setState({
-                    isLoading: False
+                    isLoading: False,
+                    presenceState: presenceState
                 })
             }, 2000);
         }
@@ -53,6 +71,7 @@ export default class Reader extends Component {
                                     Coloque o leitor em frente do código do inscrito. Quando for reconhecido, será alertado se a frequência foi efetuada ou se deu erro.
                                 </p>
                             </div>
+                            <Error { ...this.state.presenceState }/>
                         </Loading>
                     </div>
                 </div>

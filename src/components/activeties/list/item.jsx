@@ -74,7 +74,7 @@ export const ItemGroupContentSupport = (props) => {
 
     return (
         <div className={ className } id={ itemId } role="tabpanel" aria-labelledby="list-home-list">
-            <Link to={ `${props.match.url}/${props.activityName}/qrcode` } className="btn btn-outline-info mb-1">Frequência</Link>
+            <Link to={ `${props.match.url}/${props.activityName}/qrcode/${props.type}` } className="btn btn-outline-info mb-1">Frequência</Link>
             <div className="table-responsive">
                 <table className="table table-sm">
                     <thead>

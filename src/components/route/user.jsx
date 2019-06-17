@@ -18,12 +18,14 @@ export default class UserRoute extends Component {
 
         this.state = {
             quit: false,
-            type: LoadApplicationState().type
+            user: LoadApplicationState()
         }
 
         this.registered = this.registered.bind(this)
         this.support = this.support.bind(this)
         this.quit = this.quit.bind(this)
+
+        
     }
 
     quit(){
@@ -100,7 +102,9 @@ export default class UserRoute extends Component {
                     <Route path={`${this.props.match.path}activeties`} exact render={
                         (props) => <ActivetiesSupport user={ this.props.user } {...props}/>
                     }/>
-                    <Route path={`${this.props.match.path}activeties/:activity/qrcode`} component={Reader} />
+                    <Route path={`${this.props.match.path}activeties/:activity/qrcode/:type`} render={
+                        (props) => <Reader user={ this.props.user } { ...props }/>
+                    } />
 
                 </div>
                 <ChangePassword/>
@@ -111,10 +115,10 @@ export default class UserRoute extends Component {
     render(){
         if(this.state.quit)
             return <Redirect to={{
-                pathname: "/pet-event",
+                pathname: "/pet-event/",
             }}/>
         
-        switch(this.state.type){
+        switch(this.state.user.type){
             case "REGISTERED":
                 return this.registered()
             case "SUPPORT":

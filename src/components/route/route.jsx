@@ -14,6 +14,8 @@ class Router extends Component {
     this.reload = this.reload.bind(this)
 
     this.loadData()
+
+    console.log('V8')
   }
 
   loadData(){
@@ -39,9 +41,18 @@ class Router extends Component {
                 <Route path="/pet-event/" exact={true} render={ 
                   (props) => <Description isLoggedIn={ this.state.isLoggedIn } {...props} /> 
                 }/>
+
                 <Route path="/users/" render={ 
                   (props) => <UserRoute reload={ this.reload } user={ this.state.user } {...props}/>
                 }/>
+
+                {
+                  /*
+                  <Route path="/pet-event/users/" render={ 
+                    (props) => <UserRoute reload={ this.reload } user={ this.state.user } {...props}/>
+                  }/>
+                  */
+                }
                 
                 <Route path="/activeties/" render={ 
                   (props) => <Activeties history={this.props.history} isLoggedIn={ this.state.isLoggedIn }  user={ this.state.user } {...props} /> 

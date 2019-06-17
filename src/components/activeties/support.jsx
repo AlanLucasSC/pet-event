@@ -63,6 +63,7 @@ export default class ActivetiesSupport extends Component {
                     users={ activity.users }
                     activityName={ activity.name }
                     match={ this.props.match }
+                    type={ activity.inscription }
                 />
             )
         });

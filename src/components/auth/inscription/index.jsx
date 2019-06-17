@@ -5,7 +5,7 @@ import { Error } from '../error'
 import { isNothing, isRga, isEmail, checkForm } from '../../utils/auth'
 import { doInscription } from '../auth'
 
-import { True, False, Void, InitialInput } from '../../constant'
+import { True, False, Void, InitialInput, InscriptionType } from '../../constant'
 import { Input } from '../input'
 import { Submit } from '../submit'
 import { Loading } from '../../shared/loading'
@@ -46,7 +46,8 @@ export default class Login extends Component{
                 arrivalDate: '22/03/2018',
                 departureDate: '23/03/2018',
                 allergy: '',
-                deficiency: ''
+                deficiency: '',
+                type: InscriptionType
             }
         }
 
