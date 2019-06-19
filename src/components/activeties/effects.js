@@ -65,3 +65,13 @@ export const updateIncrementVacanciesActivity = async (activityName) => {
     }, 'activeties', activityName)
     return hasRemoved
 }
+
+export const updateVacanciesActivity = async (activityName, vacancies) => {
+    var hasUpdated = await FirebaseService.updateData((activity) => {
+        if(activity){
+            activity.vacancies = parseInt(activity.vacancies) + parseInt(vacancies)
+        }
+        return activity
+    }, 'activeties', activityName)
+    return hasUpdated
+}

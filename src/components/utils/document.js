@@ -1,3 +1,7 @@
+import download from 'downloadjs'
+import converter from 'json-2-csv'
+import dictionary from './dictionary'
+
 export const hasChanges = (changes) => {
     return changes.length === 0 ? true : false
 }
@@ -27,4 +31,32 @@ export const isoDateToShortDateWithHours = (dateObject) => {
 
 export const redirectTo = (route) => {
     window.location.replace(route)
+}
+
+export const downloadText = (text, file, type) => {
+    download(text, file, type);
+}
+
+export const downloadCsv = (data, name) => {
+    downloadText(data, `${name}.csv`, 'text/csv')
+}
+
+export const replaceAll = (text, needle, replacement) => {
+    return text.split(needle).join(replacement)
+}
+
+export const processingCsv = (csv) => {
+    csv = replaceAll(csv, '.', ' ')
+    dictionary.forEach(word => {
+        csv = replaceAll(csv, word.name, word["PT-BR"])
+    })
+    return csv
+}
+
+export const dataToCsv = (data, callback) => {
+    converter.json2csv(data, (err, csv) => {
+        if(!err)
+            csv = processingCsv(csv)
+        callback(err, csv)
+    })
 }
