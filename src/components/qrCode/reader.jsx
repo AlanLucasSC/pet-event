@@ -19,16 +19,18 @@ export default class Reader extends Component {
             activityName: this.props.match.params.activity,
             activityType: this.props.match.params.type,
             delay: 500,
-            isLoading: False
+            isLoading: False,
+            startPresence: False
         }
 
         this.handleScan = this.handleScan.bind(this)
     }
 
     async handleScan(data) {
-        if (data) {
+        if (data && !this.state.startPresence) {
             this.setState({
-                isLoading: True
+                isLoading: True,
+                startPresence: True
             })
 
             var isSuccess = await presence(this.state.activityName, data, this.state.activityType)
@@ -43,9 +45,10 @@ export default class Reader extends Component {
             setTimeout(() => {
                 this.setState({
                     isLoading: False,
-                    presenceState: presenceState
+                    presenceState: presenceState,
+                    startPresence: False
                 })
-            }, 2000);
+            }, 1500);
         }
     }
     

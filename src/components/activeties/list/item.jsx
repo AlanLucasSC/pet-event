@@ -68,7 +68,7 @@ export const ItemGroupContentSupport = (props) => {
             <tr key={ index }>
                 <th scope="row">{ user.name }</th>
                 <td>{ user.rga }</td>
-                <td>{ user.presence === true ? 'VEIO' : 'PENDENTE'}</td>
+                <td>{ user.presence === true ? 'PRESENTE' : 'PENDENTE'}</td>
             </tr>
         )
     })
@@ -106,7 +106,7 @@ export const ItemGroupContentAdministrator = (props) => {
             <tr key={ index }>
                 <th scope="row">{ user.name }</th>
                 <td>{ user.rga }</td>
-                <td>{ user.presence === true ? 'VEIO' : 'PENDENTE'}</td>
+                <td>{ user.presence === true ? 'PRESENTE' : 'PENDENTE'}</td>
             </tr>
         )
     })

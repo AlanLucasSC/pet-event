@@ -15,7 +15,7 @@ export default class ActivetiesAdministrator extends Component {
         
         super(props)
         this.state = {
-            user: this.props.user,
+            user: LoadApplicationState(),
             activitySelected: Nothing
         }
 

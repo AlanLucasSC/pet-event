@@ -59,6 +59,21 @@ export default class SupportUserInscription extends Component{
         this.LoadingOn()
 
         var hasSuccess = await doInscription(this.state.form)
+        if(hasSuccess.isSuccess){
+            this.setState({
+                changeSupportUserInscriptionState: {
+                    isSuccess: True,
+                    message: 'Criado com successo o usuário'
+                }
+            })
+        } else {
+            this.setState({
+                changeSupportUserInscriptionState: {
+                    isSuccess: False,
+                    message: 'Houve um erro ao criar o usuário'
+                }
+            })
+        }
 
         this.props.reload()
 

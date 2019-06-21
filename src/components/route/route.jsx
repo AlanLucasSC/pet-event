@@ -3,7 +3,6 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import { LoadApplicationState } from '../utils/localStorage'
 
 import Description from '../description'
-import Activeties from '../activeties/registered'
 import UserRoute from './user'
 
 class Router extends Component {
@@ -15,7 +14,7 @@ class Router extends Component {
 
     this.loadData()
 
-    console.log('V8')
+    console.log('V 0.1 Versão BETA')
   }
 
   loadData(){
@@ -46,17 +45,10 @@ class Router extends Component {
                   (props) => <UserRoute reload={ this.reload } user={ this.state.user } {...props}/>
                 }/>
 
-                {
-                  /*
-                  <Route path="/pet-event/users/" render={ 
-                    (props) => <UserRoute reload={ this.reload } user={ this.state.user } {...props}/>
-                  }/>
-                  */
-                }
-                
-                <Route path="/activeties/" render={ 
-                  (props) => <Activeties history={this.props.history} isLoggedIn={ this.state.isLoggedIn }  user={ this.state.user } {...props} /> 
+                <Route path="/pet-event/users/" render={ 
+                  (props) => <UserRoute reload={ this.reload } user={ this.state.user } {...props}/>
                 }/>
+                
                 <Route path='*' render={ 
                   (props) => <Description isLoggedIn={ this.state.isLoggedIn } {...props} /> 
                 }/>
