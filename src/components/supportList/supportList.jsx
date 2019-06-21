@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import { getSupportUsers, deleteSupportUsers } from './effects'
+import { False } from '../constant';
 
 export default class SupportList extends Component {
     constructor(props){
@@ -23,6 +24,7 @@ export default class SupportList extends Component {
     }
 
     reload(){
+        this.props.reload(False)
         this.loadSupportUsers()
     }
 
@@ -52,6 +54,9 @@ export default class SupportList extends Component {
     }
 
     render(){
+        if(this.props.reloadingPage){
+            this.reload()
+        }
         return (
             <div className="mt-2 mb-2 p-3">
                 <h1> Time de Suporte </h1>

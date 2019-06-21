@@ -169,13 +169,18 @@ export default class UserRoute extends Component {
                         />
                     }/>
                     <Route path={`${this.props.match.path}newSupport`} render={
-                        (props) => <SupportList user={ this.props.user } { ...props }/>
+                        (props) => <SupportList 
+                            user={ this.props.user } 
+                            { ...props }
+                            reload={ this.reload }
+                            reloadingPage={ this.state.reload }
+                        />
                     } />
 
                 </div>
                 <ChangePassword/>
                 <PlusVacancy reload={ this.reload } activityName={ this.state.activitySelected }/>
-                <SupportUserInscription />
+                <SupportUserInscription reload={ this.reload }/>
             </Main>
         )
     }

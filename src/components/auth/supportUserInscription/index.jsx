@@ -59,7 +59,8 @@ export default class SupportUserInscription extends Component{
         this.LoadingOn()
 
         var hasSuccess = await doInscription(this.state.form)
-        console.log(hasSuccess)
+
+        this.props.reload()
 
         setTimeout( this.LoadingOff , 1500);
     }
