@@ -8,14 +8,14 @@ import { dataToCsv, downloadCsv } from '../utils/document'
 
 import { ListGroup, ListGroupContent } from './list/list'
 import { ItemGroup, ItemGroupContentAdministrator } from './list/item'
-import { Nothing } from '../constant';
+import { Nothing, False } from '../constant';
 
 export default class ActivetiesAdministrator extends Component {
     constructor(props){
         
         super(props)
         this.state = {
-            user: LoadApplicationState(),
+            user: this.props.user,
             activitySelected: Nothing
         }
 
@@ -23,6 +23,7 @@ export default class ActivetiesAdministrator extends Component {
         this.reload = this.reload.bind(this)
         this.exportActivetiesToCsv = this.exportActivetiesToCsv.bind(this)
         this.exportToCsv = this.exportToCsv.bind(this)
+
     }
 
     async componentWillMount(){
@@ -33,6 +34,7 @@ export default class ActivetiesAdministrator extends Component {
     }
 
     async reload(){
+        this.props.reload(False)
         this.setState({
             activeties: objectToArray(await getActiveties()),
             myActiveties: await getUserActiveties(this.state.user.rga)
@@ -116,6 +118,10 @@ export default class ActivetiesAdministrator extends Component {
     }
 
     render(){
+        if(this.props.reloadingPage){
+            this.reload()
+        }
+        
         return this.renderActivies()
     }
 }

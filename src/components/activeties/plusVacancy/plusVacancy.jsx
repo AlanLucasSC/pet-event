@@ -55,7 +55,7 @@ export default class PlusVacancy extends Component {
         this.LoadingOn()
 
         var hasUpdated = await updateVacanciesActivity(this.props.activityName, this.state.form.plusVacancy)
-        console.log(hasUpdated)
+
         if(hasUpdated){
             this.setState({
                 changeVacancyState: {
@@ -71,6 +71,7 @@ export default class PlusVacancy extends Component {
                 }
             })
         }
+        
         this.props.reload()
 
         setTimeout( this.LoadingOff , 1500);

@@ -117,6 +117,7 @@ export const ItemGroupContentAdministrator = (props) => {
                 <a onClick={ () => {
                     props.exportToCsv(users, props.activityName)
                 } } className="mr-1 button-none">
+                    <i className="fas mr-1 fa-download"></i>
                     Exportar para CSV
                 </a>
             </span>
@@ -129,7 +130,7 @@ export const ItemGroupContentAdministrator = (props) => {
                     <a onClick={ () => {
                         props.handleActivity(props.activityName)
                     } } className="mr-1 button-none" data-toggle="modal" data-target="#plusVacancyModal">
-                        <i className="fas fa-plus"></i>
+                        <i className="fas mr-1 fa-plus"></i>
                         Aumentar Vagas
                     </a>
                 </span>

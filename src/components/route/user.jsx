@@ -14,7 +14,7 @@ import SupportUserInscription from '../auth/supportUserInscription'
 
 
 import { RemoveApplicationState, LoadApplicationState } from '../utils/localStorage'
-import { Nothing } from "../constant";
+import { Nothing, False, True } from "../constant";
 
 export default class UserRoute extends Component {
 
@@ -24,7 +24,8 @@ export default class UserRoute extends Component {
         this.state = {
             quit: false,
             user: LoadApplicationState(),
-            activitySelected: Nothing
+            activitySelected: Nothing,
+            reload: False
         }
 
         this.registered = this.registered.bind(this)
@@ -32,6 +33,13 @@ export default class UserRoute extends Component {
         this.administrator = this.administrator.bind(this)
         this.quit = this.quit.bind(this)
         this.handleActivity = this.handleActivity.bind(this)
+        this.reload = this.reload.bind(this)
+    }
+
+    reload(reload = True){
+        this.setState({
+            reload: reload
+        })
     }
 
     handleActivity(activity){
@@ -152,7 +160,13 @@ export default class UserRoute extends Component {
                         </div>
                     </nav>
                     <Route path={`${this.props.match.path}activeties`} exact render={
-                        (props) => <ActivetiesAdministrator handleActivity={ this.handleActivity } user={ this.props.user } {...props}/>
+                        (props) => <ActivetiesAdministrator
+                            reload={ this.reload }
+                            reloadingPage={ this.state.reload }
+                            handleActivity={ this.handleActivity } 
+                            user={ this.props.user } 
+                            {...props}
+                        />
                     }/>
                     <Route path={`${this.props.match.path}newSupport`} render={
                         (props) => <SupportList user={ this.props.user } { ...props }/>
@@ -160,7 +174,7 @@ export default class UserRoute extends Component {
 
                 </div>
                 <ChangePassword/>
-                <PlusVacancy reload={this.props.reload } activityName={ this.state.activitySelected }/>
+                <PlusVacancy reload={ this.reload } activityName={ this.state.activitySelected }/>
                 <SupportUserInscription />
             </Main>
         )
