@@ -109,12 +109,10 @@ export default class Login extends Component{
                         <Input
                             type="text"
                             id="rgaLogin"
-                            placeholder="RGA"
+                            placeholder="User"
                             onChange={ this.rgaChange }
-                            isValid={ this.state.isRga }
-                            invalidMessage="Insira um rga válido"
                         >
-                            RGA
+                            User
                         </Input>
                         <Input
                             type="password"
