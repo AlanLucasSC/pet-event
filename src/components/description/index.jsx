@@ -25,7 +25,7 @@ export default class Description extends Component {
             <Main>
                 <div className="col-md-7 col-lg-8 bg-white rounded"> 
                     <div className="text-right">
-                        <ModalButton target="#login"> Login </ModalButton>
+                        <ModalButton target="#login"> Entrar </ModalButton>
                         <ModalButton target="#register"> Inscreva-se </ModalButton>
                     </div>
                     <Markdown />

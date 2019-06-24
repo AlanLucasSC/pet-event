@@ -14,7 +14,7 @@ class Router extends Component {
 
     this.loadData()
 
-    console.log('V 0.1 Versão BETA')
+    console.log('V 1.0')
   }
 
   loadData(){

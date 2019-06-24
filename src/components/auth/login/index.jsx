@@ -102,7 +102,7 @@ export default class Login extends Component{
     render(){
         return(
             <Modal id="login"> 
-                <h3 className="login-heading mb-4">Login</h3>
+                <h3 className="login-heading mb-4">Entrar</h3>
                 <form onSubmit={ this.handleSubmit }>
 
                     <Loading isLoading={ this.state.isLoading }>
@@ -126,7 +126,7 @@ export default class Login extends Component{
                         </Input>
                         <hr className="my-4"></hr>
                         <Error { ...this.state.loginState }/>
-                        <Submit id="idLogin"> Login </Submit>
+                        <Submit id="idLogin"> Entrar </Submit>
                     </Loading>
 
                 </form>
