@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 
 import { LoadApplicationState } from '../utils/localStorage'
 import { objectToArray } from '../utils/document'
-import { getActiveties, getUserActiveties } from './effects'
+import { getActiveties, getUserActiveties, getUsers } from './effects'
 import { dataToCsv, downloadCsv } from '../utils/document'
 
 
 import { ListGroup, ListGroupContent } from './list/list'
 import { ItemGroup, ItemGroupContentAdministrator } from './list/item'
-import { Nothing, False } from '../constant';
+import { Nothing, False, InscriptionType } from '../constant';
 
 export default class ActivetiesAdministrator extends Component {
     constructor(props){
@@ -21,7 +21,7 @@ export default class ActivetiesAdministrator extends Component {
 
         this.renderActivies = this.renderActivies.bind(this)
         this.reload = this.reload.bind(this)
-        this.exportActivetiesToCsv = this.exportActivetiesToCsv.bind(this)
+        this.exportUsersToCsv = this.exportUsersToCsv.bind(this)
         this.exportToCsv = this.exportToCsv.bind(this)
 
     }
@@ -41,22 +41,21 @@ export default class ActivetiesAdministrator extends Component {
         })
     }
 
-    async exportActivetiesToCsv(){
-        var activies = []
-        this.state.activeties.forEach(activity => {
-            var users = objectToArray(activity.users)
-            users.forEach(user => {
-                user.activityName = activity.name
-                user.activityDescription = activity.description
-                user.activityVacancies = activity.vacancies
-                user.activityInscription = activity.inscription
+    async exportUsersToCsv(){
+        var users = objectToArray(await getUsers())
+        var usersFormated = []
 
-                activies.push(user)
-            })
-        });
+        users.forEach((user) => {
+            if(user.type === InscriptionType){
+                usersFormated.push({
+                    ...user,
+                    password: ''
+                })
+            }
+        })
 
-        dataToCsv(activies, (err, csv) => {
-            downloadCsv(csv, 'Atividades')
+        dataToCsv(usersFormated, (err, csv) => {
+            downloadCsv(csv, 'Inscritos')
         })
     }
 
@@ -106,7 +105,7 @@ export default class ActivetiesAdministrator extends Component {
             <div className="mt-2 mb-2 p-3">
                 <div className="row">
                     <ListGroup>
-                        <a onClick={ this.exportActivetiesToCsv } className="btn btn-outline-info mb-1">Exportar para CSV</a>
+                        <a onClick={ this.exportUsersToCsv } className="btn btn-outline-info mb-1">Exportar Inscritos</a>
                         { itemGroup }
                     </ListGroup>
                     <ListGroupContent>

@@ -10,6 +10,11 @@ export const getUserActiveties = async (rga) => {
     return activeties
 }
 
+export const getUsers = async () => {
+    var users = await FirebaseService.getOneData('users')
+    return users
+}
+
 export const activityInscription = async (rga, activity, name) => {
     var formInscription = {
         inscription: true
