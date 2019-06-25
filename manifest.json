@@ -3,7 +3,7 @@
   "name": "To Event",
   "icons": [
     {
-      "src": "72.png",
+      "src": "shortcut.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/png"
     },{
