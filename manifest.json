@@ -2,11 +2,15 @@
   "short_name": "To Event",
   "name": "To Event",
   "icons": [{
-      "src": "192.png",
+    "src": "shortcut.png",
+    "sizes": "512x512",
+    "type": "image/png"
+    },{
+      "src": "shortcut.png",
       "sizes": "192x192",
       "type": "image/png"
     },{
-      "src": "512.png",
+      "src": "shortcut.png",
       "sizes": "512x512",
       "type": "image/png"
     }
