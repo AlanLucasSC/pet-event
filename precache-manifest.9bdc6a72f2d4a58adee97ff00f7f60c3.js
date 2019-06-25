@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/pet-event/static/css/main.faccfa99.chunk.css"
   },
   {
-    "revision": "d40d402d71b771887d26d76a218183db",
+    "revision": "590bd857f4a4241b7feca28d0ad9e991",
     "url": "/pet-event/index.html"
   }
 ];
